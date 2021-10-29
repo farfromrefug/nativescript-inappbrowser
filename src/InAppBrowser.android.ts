@@ -26,10 +26,8 @@ import {
   BROWSER_TYPES,
 } from './InAppBrowser.common';
 import {
-  Builder,
   getDrawableId,
   toolbarIsLight,
-  CustomTabsIntent,
   DISMISSED_EVENT,
   ARROW_BACK_WHITE,
   ARROW_BACK_BLACK,
@@ -37,6 +35,8 @@ import {
   openAuthSessionPolyfillAsync,
   closeAuthSessionPolyfillAsync,
 } from './utils.android';
+
+export let CustomTabsIntent: typeof androidx.browser.customtabs.CustomTabsIntent;
 
 import { parseColor } from './utils.common';
 
@@ -100,6 +100,9 @@ function setup() {
       }
   
       const inAppBrowserOptions = getDefaultOptions(url, options);
+      if (!CustomTabsIntent) {
+        CustomTabsIntent = androidx.browser.customtabs.CustomTabsIntent;
+      }
   
       const builder = new CustomTabsIntent.Builder();
       let colorString = inAppBrowserOptions[InAppBrowserModule.KEY_TOOLBAR_COLOR];
@@ -279,7 +282,7 @@ function setup() {
       }
     }
   
-    private applyAnimation(context: Context, builder: Builder, animations: Animations): void {
+    private applyAnimation(context: Context, builder: androidx.browser.customtabs.CustomTabsIntent.Builder, animations: Animations): void {
       const startEnterAnimationId = animations[InAppBrowserModule.KEY_ANIMATION_START_ENTER]
         ? this.resolveAnimationIdentifierIfNeeded(context, animations[InAppBrowserModule.KEY_ANIMATION_START_ENTER])
         : -1;
