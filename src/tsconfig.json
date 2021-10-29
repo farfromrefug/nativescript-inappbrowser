@@ -1,12 +1,12 @@
 {
     "compilerOptions": {
-        "target": "es2017",
+        "target": "es2019",
         "module": "esnext",
         "moduleResolution": "node",
         "declaration": true,
         "removeComments": true,
         "noLib": false,
-        "emitDecoratorMetadata": true,
+        "emitDecoratorMetadata": false,
         "experimentalDecorators": true,
         "skipLibCheck": true,
         "lib": ["es2017", "dom"],
