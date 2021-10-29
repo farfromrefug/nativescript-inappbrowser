@@ -23,13 +23,11 @@
         "baseUrl": ".",
         "plugins": [
             {
-    				"transform": "@nativescript/webpack/dist/transformers/NativeClass",
+                "transform": "@nativescript/webpack/dist/transformers/NativeClass",
                 "type": "raw"
             }
         ]
     },
-    "exclude": [
-        "node_modules"
-    ],
+    "exclude": ["node_modules"],
     "compileOnSave": false
 }
