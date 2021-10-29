@@ -2,7 +2,6 @@
     "uses": [
       "com.proyecto26.inappbrowser:ChromeTabsManagerActivity*",
       "android.app:Activity*",
-      "android.nfc:NfcAdapter*",
       "android.content:Intent*",
       "android.content:Context*",
       "android.content.pm:PackageManager*",

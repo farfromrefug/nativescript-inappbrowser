@@ -59,13 +59,11 @@ class InAppBrowserModule extends java.lang.Object implements InAppBrowserClassMe
   private static KEY_ANIMATION_START_EXIT = 'startExit';
   private static KEY_ANIMATION_END_ENTER = 'endEnter';
   private static KEY_ANIMATION_END_EXIT = 'endExit';
-  private static KEY_HAS_BACK_BUTTON = 'hasBackButton';
   private static KEY_BROWSER_PACKAGE = 'browserPackage';
   private static KEY_SHOW_IN_RECENTS = 'showInRecents';
 
   private static redirectResolve: RedirectResolve;
   private static redirectReject: RedirectReject;
-  private isLightTheme: boolean;
   private currentActivity: any;
   private animationIdentifierPattern = Pattern.compile('^.+:.+/');
 
@@ -104,12 +102,10 @@ class InAppBrowserModule extends java.lang.Object implements InAppBrowserClassMe
 
     const builder = new CustomTabsIntent.Builder();
     let colorString = inAppBrowserOptions[InAppBrowserModule.KEY_TOOLBAR_COLOR];
-    this.isLightTheme = false;
     if (colorString) {
       const color = tryParseColor(colorString, 'Invalid toolbar color');
       if (color) {
         builder.setToolbarColor(color.android);
-        this.isLightTheme = toolbarIsLight(color.android);
       }
     }
     colorString = inAppBrowserOptions[InAppBrowserModule.KEY_SECONDARY_TOOLBAR_COLOR];
@@ -142,12 +138,10 @@ class InAppBrowserModule extends java.lang.Object implements InAppBrowserClassMe
       const animations = inAppBrowserOptions[InAppBrowserModule.KEY_ANIMATIONS];
       this.applyAnimation(context, builder, animations);
     }
-    if (inAppBrowserOptions[InAppBrowserModule.KEY_HAS_BACK_BUTTON]) {
+    if (inAppBrowserOptions.backButtonDrawableId) {
       builder.setCloseButtonIcon(BitmapFactory.decodeResource(
         context.getResources(),
-        this.isLightTheme
-          ? getDrawableId(ARROW_BACK_BLACK)
-          : getDrawableId(ARROW_BACK_WHITE)
+        getDrawableId(inAppBrowserOptions.backButtonDrawableId)
       ));
     }
 

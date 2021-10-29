@@ -1,11 +1,3 @@
-import Activity = android.app.Activity;
-import Intent = android.content.Intent;
-import NfcAdapter = android.nfc.NfcAdapter;
-import Context = android.content.Context;
-import ResolveInfo = android.content.pm.ResolveInfo;
-import Color = android.graphics.Color;
-import List = java.util.List;
-import Arrays = java.util.Arrays;
 
 import {
   Utils,
@@ -46,14 +38,14 @@ export const getDrawableId = Utils.ad.resources.getDrawableId;
  * Get the url when the app is opened and clear the data for security concerns.
  * @param activity - Current Android Activity.
  */
-export function getInitialURL(activity: Activity): string {
+export function getInitialURL(activity: android.app.Activity): string {
   if (activity) {
     const intent = activity.getIntent();
     const action = intent.getAction();
     const uri = intent.getData();
     if (uri !== null && (
-      Intent.ACTION_VIEW === action ||
-      NfcAdapter.ACTION_NDEF_DISCOVERED === action
+      android.content.Intent.ACTION_VIEW === action ||
+      'android.nfc.action.NDEF_DISCOVERED' === action
     )) {
       const url = '' + uri;
       if (url === initialUrl) return null;
@@ -81,7 +73,7 @@ function waitForRedirectAsync(
 /**
  * Detect Android Activity `OnResume` event once
  */
-function handleAppStateActiveOnce(): Promise<Activity> {
+function handleAppStateActiveOnce(): Promise<android.app.Activity> {
   return new Promise(function (resolve) {
     // Browser can be closed before handling AppState change
     if (!Application.android.paused) {
@@ -138,8 +130,8 @@ export function closeAuthSessionPolyfillAsync(): void {
   }
 }
 
-export function getPreferredPackages(context: Context): List<ResolveInfo> {
-  const serviceIntent = new Intent(ACTION_CUSTOM_TABS_CONNECTION);
+export function getPreferredPackages(context: android.content.Context): java.util.List<android.content.pm.ResolveInfo> {
+  const serviceIntent = new android.content.Intent(ACTION_CUSTOM_TABS_CONNECTION);
   const resolveInfos = context.getPackageManager().queryIntentServices(serviceIntent, 0);
   return resolveInfos;
 }
@@ -151,12 +143,12 @@ export function toolbarIsLight(themeColor: number): boolean {
   return ColorUtils.calculateLuminance(themeColor) > 0.5;
 }
 
-export function getDefaultBrowser(context: Context): string {
+export function getDefaultBrowser(context: android.content.Context): string {
   const resolveInfos = getPreferredPackages(context);
   if (!CustomTabsClient) {
     CustomTabsClient = androidx.browser.customtabs.CustomTabsClient;
   }
-  const packageName = CustomTabsClient.getPackageName(context, Arrays.asList([
+  const packageName = CustomTabsClient.getPackageName(context, java.util.Arrays.asList([
     "com.android.chrome",
     "com.chrome.beta",
     "com.chrome.dev",

@@ -59,7 +59,7 @@ type InAppBrowserAndroidOptions = {
   forceCloseOnRedirection?: boolean,
   animations?: Animations,
   headers?: { [key: string]: string },
-  hasBackButton?: boolean,
+  backButtonDrawableId?: string,
   browserPackage?: string,
   showInRecents?: boolean,
 };

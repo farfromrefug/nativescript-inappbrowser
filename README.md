@@ -91,7 +91,7 @@ Property       | Description
 `animations` (Object)             | Sets the start and exit animations. [`{ startEnter, startExit, endEnter, endExit }`]
 `headers` (Object)                | The data are key/value pairs, they will be sent in the HTTP request headers for the provided url. [`{ 'Authorization': 'Bearer ...' }`]
 `forceCloseOnRedirection` (Boolean) | Open Custom Tab in a new task to avoid issues redirecting back to app scheme. [`true`/`false`]
-`hasBackButton` (Boolean)         | Sets a back arrow instead of the default `X` icon to close the custom tab. [`true`/`false`]
+`backButtonDrawableId` (String)         | Sets a custom drawable instead of the X
 `browserPackage` (String)         | Package name of a browser to be used to handle Custom Tabs.
 `showInRecents` (Boolean)         | Determining whether browsed website should be shown as separate entry in Android recents/multitasking view. [`true`/`false`]
 
