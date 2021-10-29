@@ -26,3 +26,4 @@ demo/report/report.html
 demo/report/stats.json
 !demo-vue/app/app.js
 package-lock.json
+pnpm-lock.yaml
