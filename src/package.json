@@ -1,5 +1,5 @@
 {
-	"name": "nativescript-inappbrowser",
+	"name": "@akylas/nativescript-inappbrowser",
 	"version": "3.0.1",
 	"description": "InAppBrowser for NativeScript",
 	"main": "InAppBrowser",
