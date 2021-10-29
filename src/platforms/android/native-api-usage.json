@@ -1,0 +1,21 @@
+{
+    "uses": [
+      "com.proyecto26.inappbrowser:ChromeTabsManagerActivity*",
+      "java.lang:Object*",
+      "android.app:Activity*",
+      "android.nfc:NfcAdapter*",
+      "android.content:Intent*",
+      "android.content:Context*",
+      "android.content.pm:PackageManager*",
+      "android.content.pm:ResolveInfo*",
+      "androidx.browser.customtabs.CustomTabsIntent:Builder*",
+      "androidx.browser.customtabs:CustomTabsIntent*",
+      "androidx.browser.customtabs:CustomTabsClient*",
+      "androidx.core.graphics:ColorUtils*",
+      "android.net:Uri*",
+      "android.text:TextUtils*",
+      "android.provider:Browser*",
+      "java.util.regex:Pattern*",
+      "android.graphics:BitmapFactory*"
+    ]
+}
