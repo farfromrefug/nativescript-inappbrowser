@@ -1,47 +1,20 @@
-import Uri = android.net.Uri;
-import Bundle = android.os.Bundle;
-import TextUtils = android.text.TextUtils;
-import Intent = android.content.Intent;
-import Context = android.content.Context;
-import BitmapFactory = android.graphics.BitmapFactory;
-import Browser = android.provider.Browser;
-import Pattern = java.util.regex.Pattern;
 
-import { Utils, Application, EventData } from '@nativescript/core';
+
+import { Application, EventData, Utils } from '@nativescript/core';
 import {
-  ChromeTabsEvent,
-  BROWSER_ACTIVITY_EVENTS,
-  createStartIntent,
-  createDismissIntent
+  BROWSER_ACTIVITY_EVENTS, ChromeTabsEvent, createDismissIntent, createStartIntent
 } from './ChromeTabsManagerActivity';
 import {
   Animations,
-  BrowserResult,
-  getDefaultOptions,
-  InAppBrowserOptions,
-  InAppBrowserClassMethods,
-  RedirectResolve,
-  RedirectReject,
-  BROWSER_TYPES,
+  BrowserResult, BROWSER_TYPES, getDefaultOptions, InAppBrowserClassMethods, InAppBrowserOptions, RedirectReject, RedirectResolve
 } from './InAppBrowser.common';
 import {
-  getDrawableId,
-  toolbarIsLight,
-  DISMISSED_EVENT,
-  ARROW_BACK_WHITE,
-  ARROW_BACK_BLACK,
-  getPreferredPackages,
-  openAuthSessionPolyfillAsync,
-  closeAuthSessionPolyfillAsync,
+  closeAuthSessionPolyfillAsync, DISMISSED_EVENT, getDrawableId, getPreferredPackages,
+  openAuthSessionPolyfillAsync
 } from './utils.android';
-
-export let CustomTabsIntent: typeof androidx.browser.customtabs.CustomTabsIntent;
-
 import { tryParseColor } from './utils.common';
 
-declare let global: any;
-
-let InAppBrowserModuleInstance: InAppBrowserClassMethods;
+export let CustomTabsIntent: typeof androidx.browser.customtabs.CustomTabsIntent;
 
 class InAppBrowserModule extends java.lang.Object implements InAppBrowserClassMethods {
   private static ERROR_CODE = 'InAppBrowser';
@@ -65,7 +38,7 @@ class InAppBrowserModule extends java.lang.Object implements InAppBrowserClassMe
   private static redirectResolve: RedirectResolve;
   private static redirectReject: RedirectReject;
   private currentActivity: any;
-  private animationIdentifierPattern = Pattern.compile('^.+:.+/');
+  private animationIdentifierPattern = new RegExp('^.+:.+/');
 
   isAvailable() {
     const context = Utils.android.getApplicationContext();
@@ -133,13 +106,15 @@ class InAppBrowserModule extends java.lang.Object implements InAppBrowserClassMe
     if (inAppBrowserOptions[InAppBrowserModule.KEY_DEFAULT_SHARE_MENU_ITEM]) {
       builder.addDefaultShareMenuItem();
     }
-    const context = Utils.android.getApplicationContext() as Context;
+
+  
+    const context = Utils.android.getApplicationContext() as android.content.Context;
     if (inAppBrowserOptions[InAppBrowserModule.KEY_ANIMATIONS]) {
       const animations = inAppBrowserOptions[InAppBrowserModule.KEY_ANIMATIONS];
       this.applyAnimation(context, builder, animations);
     }
     if (inAppBrowserOptions.backButtonDrawableId) {
-      builder.setCloseButtonIcon(BitmapFactory.decodeResource(
+      builder.setCloseButtonIcon(android.graphics.BitmapFactory.decodeResource(
         context.getResources(),
         getDrawableId(inAppBrowserOptions.backButtonDrawableId)
       ));
@@ -150,15 +125,15 @@ class InAppBrowserModule extends java.lang.Object implements InAppBrowserClassMe
 
     const keyHeaders = inAppBrowserOptions[InAppBrowserModule.KEY_HEADERS];
     if (keyHeaders) {
-      const headers = new Bundle();
+      const headers = new android.os.Bundle();
       for (const key in keyHeaders) {
         if (keyHeaders.hasOwnProperty(key)) {
           headers.putString(key, keyHeaders[key]);
         }
       }
-      intent.putExtra(Browser.EXTRA_HEADERS, headers);
+      intent.putExtra(android.provider.Browser.EXTRA_HEADERS, headers);
     }
-
+    const Intent = android.content.Intent;
     if (inAppBrowserOptions[InAppBrowserModule.KEY_FORCE_CLOSE_ON_REDIRECTION]) {
       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     }
@@ -175,7 +150,7 @@ class InAppBrowserModule extends java.lang.Object implements InAppBrowserClassMe
     try {
       if (inAppBrowserOptions[InAppBrowserModule.KEY_BROWSER_PACKAGE] !== undefined) {
         const packageName = inAppBrowserOptions[InAppBrowserModule.KEY_BROWSER_PACKAGE];
-        if (!TextUtils.isEmpty(packageName)) {
+        if (packageName?.length) {
           intent.setPackage(packageName);
         }
       } else {
@@ -190,7 +165,7 @@ class InAppBrowserModule extends java.lang.Object implements InAppBrowserClassMe
 
     this.registerEvent();
 
-    intent.setData(Uri.parse(url));
+    intent.setData(android.net.Uri.parse(url));
     if (inAppBrowserOptions[InAppBrowserModule.KEY_SHOW_PAGE_TITLE]) {
       builder.setShowTitle(!!inAppBrowserOptions[InAppBrowserModule.KEY_SHOW_PAGE_TITLE]);
     }
@@ -274,15 +249,15 @@ class InAppBrowserModule extends java.lang.Object implements InAppBrowserClassMe
     BROWSER_ACTIVITY_EVENTS.once(DISMISSED_EVENT, (e) => this.onEvent(e));
   }
 
-  private resolveAnimationIdentifierIfNeeded(context: Context, identifier: string): number {
-    if (this.animationIdentifierPattern.matcher(identifier).find()) {
+  private resolveAnimationIdentifierIfNeeded(context: android.content.Context, identifier: string): number {
+    if (this.animationIdentifierPattern.test(identifier)) {
       return context.getResources().getIdentifier(identifier, null, null);
     } else {
       return context.getResources().getIdentifier(identifier, 'anim', context.getPackageName());
     }
   }
 
-  private applyAnimation(context: Context, builder: androidx.browser.customtabs.CustomTabsIntent.Builder, animations: Animations): void {
+  private applyAnimation(context: android.content.Context, builder: androidx.browser.customtabs.CustomTabsIntent.Builder, animations: Animations): void {
     const startEnterAnimationId = animations[InAppBrowserModule.KEY_ANIMATION_START_ENTER]
       ? this.resolveAnimationIdentifierIfNeeded(context, animations[InAppBrowserModule.KEY_ANIMATION_START_ENTER])
       : -1;
