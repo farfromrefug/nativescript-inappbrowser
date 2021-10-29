@@ -1,33 +1,3 @@
-<p align="center">
-  <a href="./LICENSE">
-    <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT license" />
-  </a>
-  <a href="https://npmjs.org/package/nativescript-inappbrowser">
-    <img src="http://img.shields.io/npm/v/nativescript-inappbrowser.svg" alt="Current npm package version" />
-  </a>
-  <a href="https://travis-ci.org/proyecto26/nativescript-inappbrowser">
-    <img src="https://travis-ci.org/proyecto26/nativescript-inappbrowser.svg?branch=master" alt="Build Status" />
-  </a>
-  <a href="https://github.com/proyecto26/nativescript-inappbrowser/graphs/commit-activity">
-    <img src="https://img.shields.io/badge/Maintained%3F-yes-brightgreen.svg" alt="Maintenance" />
-  </a>
-  <a href="https://tidelift.com/subscription/pkg/npm-nativescript-inappbrowser?utm_source=npm-nativescript-inappbrowser&utm_medium=referral&utm_campaign=readme">
-    <img src="https://tidelift.com/badges/package/npm/nativescript-inappbrowser" alt="Tidelift Subscription" />
-  </a>
-  <a href="https://opencollective.com/proyecto26" alt="Financial Contributors on Open Collective">
-    <img src="https://opencollective.com/proyecto26/all/badge.svg?label=financial+contributors" />
-  </a>
-  <a href="https://npmjs.org/package/nativescript-inappbrowser">
-    <img src="http://img.shields.io/npm/dm/nativescript-inappbrowser.svg" alt="Downloads" />
-  </a>
-  <a href="https://npmjs.org/package/nativescript-inappbrowser">
-    <img src="http://img.shields.io/npm/dt/nativescript-inappbrowser.svg?label=total%20downloads" alt="Total downloads" />
-  </a>
-  <a href="https://twitter.com/intent/follow?screen_name=jdnichollsc">
-    <img src="https://img.shields.io/twitter/follow/jdnichollsc.svg?label=Follow%20@jdnichollsc" alt="Follow @jdnichollsc" />
-  </a>
-</p>
-
 <h1 align="center">InAppBrowser for NativeScript</h1>
 <h3 align="center">Provides access to the system's web browser and supports handling redirects</h3>
 <h4 align="center"><a href="https://developer.chrome.com/multidevice/android/customtabs#whatarethey">Chrome Custom Tabs</a> for Android & <a href="https://developer.apple.com/documentation/safariservices">SafariServices</a>/<a href="https://developer.apple.com/documentation/authenticationservices">AuthenticationServices</a> for iOS.</h4>
@@ -39,7 +9,7 @@
 ## Getting started
 
 ```javascript
-tns plugin add nativescript-inappbrowser
+tns plugin add @akylas/nativescript-inappbrowser
 ```
 
 
@@ -88,7 +58,7 @@ Property       | Description
 
 ```ts
 import { Utils, Dialogs } from '@nativescript/core';
-import { InAppBrowser } from 'nativescript-inappbrowser';
+import { InAppBrowser } from '@akylas/nativescript-inappbrowser';
 
 ...
   openLink = async () => {
@@ -193,7 +163,7 @@ export const getDeepLink = (path = "") => {
 - home-page.ts
 ```ts
 import { Utils, Dialogs } from '@nativescript/core';
-import { InAppBrowser } from 'nativescript-inappbrowser';
+import { InAppBrowser } from '@akylas/nativescript-inappbrowser';
 import { getDeepLink } from './utilities';
 ...
   async onLogin() {
@@ -243,46 +213,9 @@ This project exists thanks to all the people who contribute. [[Contribute](CONTR
 | :---: | :---: |
 <!-- COLLABORATORS-LIST:END -->
 
-### Financial Contributors
-
-Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/proyecto26/contribute)]
-
 #### Individuals
 
 <a href="https://opencollective.com/proyecto26"><img src="https://opencollective.com/proyecto26/individuals.svg?width=890"></a>
 
-#### Organizations
-
-Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/proyecto26/contribute)]
-
-<a href="https://opencollective.com/proyecto26/organization/0/website"><img src="https://opencollective.com/proyecto26/organization/0/avatar.svg"></a>
-<a href="https://opencollective.com/proyecto26/organization/1/website"><img src="https://opencollective.com/proyecto26/organization/1/avatar.svg"></a>
-<a href="https://opencollective.com/proyecto26/organization/2/website"><img src="https://opencollective.com/proyecto26/organization/2/avatar.svg"></a>
-<a href="https://opencollective.com/proyecto26/organization/3/website"><img src="https://opencollective.com/proyecto26/organization/3/avatar.svg"></a>
-<a href="https://opencollective.com/proyecto26/organization/4/website"><img src="https://opencollective.com/proyecto26/organization/4/avatar.svg"></a>
-<a href="https://opencollective.com/proyecto26/organization/5/website"><img src="https://opencollective.com/proyecto26/organization/5/avatar.svg"></a>
-<a href="https://opencollective.com/proyecto26/organization/6/website"><img src="https://opencollective.com/proyecto26/organization/6/avatar.svg"></a>
-<a href="https://opencollective.com/proyecto26/organization/7/website"><img src="https://opencollective.com/proyecto26/organization/7/avatar.svg"></a>
-<a href="https://opencollective.com/proyecto26/organization/8/website"><img src="https://opencollective.com/proyecto26/organization/8/avatar.svg"></a>
-<a href="https://opencollective.com/proyecto26/organization/9/website"><img src="https://opencollective.com/proyecto26/organization/9/avatar.svg"></a>
-
 ## Credits 👍
 * **React Native InAppBrowser:** [InAppBrowser for React Native](https://github.com/proyecto26/react-native-inappbrowser)
-
-## Supporting 🍻
-I believe in Unicorns 🦄
-Support [me](http://www.paypal.me/jdnichollsc/2), if you do too.
-
-## Enterprise 💼
-
-Available as part of the Tidelift Subscription.
-
-The maintainers of InAppBrowser for NativeScript and thousands of other packages are working with Tidelift to deliver commercial support and maintenance for the open source dependencies you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact dependencies you use. [Learn more.](https://tidelift.com/subscription/pkg/npm-nativescript-inappbrowser?utm_source=npm-nativescript-inappbrowser&utm_medium=referral&utm_campaign=enterprise&utm_term=repo)
-
-## Security contact information 🚨
-To report a security vulnerability, please use the [Tidelift security contact](https://tidelift.com/security). Tidelift will coordinate the fix and disclosure.
-
-## Happy coding 💯
-Made with ❤️
-
-<img width="150px" src="https://avatars0.githubusercontent.com/u/28855608?s=200&v=4" align="right">
