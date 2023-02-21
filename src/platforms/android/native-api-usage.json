@@ -1,17 +1,17 @@
 {
     "uses": [
-      "com.proyecto26.inappbrowser:ChromeTabsManagerActivity*",
-      "android.app:Activity*",
-      "android.content:Intent*",
-      "android.content:Context*",
-      "android.content.pm:PackageManager*",
-      "android.content.pm:ResolveInfo*",
-      "androidx.browser.customtabs.CustomTabsIntent:Builder*",
-      "androidx.browser.customtabs:CustomTabsIntent*",
-      "androidx.browser.customtabs:CustomTabsClient*",
-      "androidx.core.graphics:ColorUtils*",
-      "android.net:Uri*",
-      "android.provider:Browser*",
-      "android.graphics:BitmapFactory*"
+      "com.proyecto26.inappbrowser:ChromeTabsManagerActivity",
+      "android.app:Activity",
+      "android.content:Intent",
+      "android.content:Context",
+      "android.content.pm:PackageManager",
+      "android.content.pm:ResolveInfo",
+      "androidx.browser.customtabs:CustomTabsIntent.Builder",
+      "androidx.browser.customtabs:CustomTabsIntent",
+      "androidx.browser.customtabs:CustomTabsClient",
+      "androidx.core.graphics:ColorUtils",
+      "android.net:Uri",
+      "android.provider:Browser",
+      "android.graphics:BitmapFactory"
     ]
 }
